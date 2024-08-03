@@ -14,7 +14,6 @@
 import random
 from flask import Flask, jsonify, request
 from emoji import is_emoji
-from manager import Manager
 
 app = Flask(__name__)
 

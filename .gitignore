@@ -9,3 +9,4 @@ __pycache__/
 /HTTP/
 .HTTP/
 .HTTP/*
+/pyvenv.cfg
