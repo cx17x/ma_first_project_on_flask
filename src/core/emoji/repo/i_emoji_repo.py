@@ -15,3 +15,11 @@ class IEmojiRepo(ABC):
     @abstractmethod
     def update_by_id(self, emoji_id: int, emoji: Emoji) -> Emoji:
         pass
+
+    @abstractmethod
+    def add_new_emoji(self, emoji: Emoji) -> Emoji:
+        pass
+
+    @abstractmethod
+    def delete_emoji(self, emoji_id: int) -> Emoji:
+        pass
