@@ -1,6 +1,6 @@
 from dataclasses import asdict
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from src.core.emoji.usecases.add_govno import AddNewEmojiUC, AddNewEmojiDTO
 from src.core.emoji.usecases.delete_emoji import DeleteEmojiUC, DeleteEmojiDTO
@@ -19,16 +19,18 @@ def get_random_govno():
     return jsonify(asdict(result))
 
 @emoji_bp.route('/govno/<int:id>', methods=['GET'])
-def get_govno_by_id():
+def get_govno_by_id(id: int):
     usercase = GetGovnoByIdUC(emoji_repo=EmojiRepoDB(new_session()))
-    dto = GetGovnoByIdDTO()
+    dto = GetGovnoByIdDTO(id=id)
     result = usercase.execute(dto=dto)
     return jsonify(asdict(result))
 
 @emoji_bp.route('/govno/<int:id>', methods=['PUT'])
-def update_by_id():
+def update_by_id(id):
     usercase = UpdateByIdUC(emoji_repo=EmojiRepoDB(new_session()))
-    dto = UpdateByIdDTO()
+    data = request.json
+    print(data)
+    dto = UpdateByIdDTO(id=id, str_emoji=data.get('emoji'))
     result = usercase.execute(dto=dto)
     return jsonify(asdict(result))
 

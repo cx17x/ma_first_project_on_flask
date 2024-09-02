@@ -5,14 +5,6 @@ from sqlalchemy.orm import sessionmaker, session, DeclarativeBase, Session
 
 from src.data.config import settings
 
-# engine = create_engine(
-#     url=settings.DATABASE_URL,
-#     echo=True
-# )
-#
-# SessionLocal = sessionmaker(engine)
-#
-
 class Base(DeclarativeBase):
     pass
 
@@ -32,4 +24,4 @@ def create_session_maker():
 def new_session() -> Session:
     session_maker = create_session_maker()
     with session_maker() as session:
-        yield session
+        return session

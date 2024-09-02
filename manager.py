@@ -38,7 +38,7 @@ class Manager(ManagerInterface):
         data = {'emoji': emoji}
         response = self._send_request(method='POST', endpoint='govno', data=data)
         if isinstance(response, requests.Response):
-            if response.status_code == 201:
+            if response.status_code == 200:
                 print('SUCCESS!')
             elif response.status_code == 409:
                 print('Error : Dublicate')
@@ -47,11 +47,11 @@ class Manager(ManagerInterface):
 
         return 'ABOBUS'
 
-    def update_emoji(self, emoji_id: int, new_emoji: str, data: str) -> requests.Response:
+    def update_emoji(self, emoji_id: int, new_emoji: str) -> requests.Response:
         data = {'emoji': new_emoji}
         response = self._send_request(method='PUT', endpoint=f'govno/{emoji_id}', data=data)
         if isinstance(response, requests.Response):
-            if response.status_code == 201:
+            if response.status_code == 200:
                 print('SUCCESS!')
             elif response.status_code == 404:
                 print('Error : Not Found')
@@ -61,7 +61,7 @@ class Manager(ManagerInterface):
     def delete_emoji(self, id: int) -> requests.Response:
         response = self._send_request(method='DELETE', endpoint=f'govno/{id}')
         if isinstance(response, requests.Response):
-            if response.status_code == 201:
+            if response.status_code == 200:
                 print('SUCCESS!')
             else:
                 print("I don't know what is this")
@@ -70,5 +70,5 @@ class Manager(ManagerInterface):
 if __name__ == '__main__':
     put_manager = Manager('http://127.0.0.1:5000')
 
-    new_emoji = '🐷'
-    put_manager.add_new_emoji(new_emoji)
+    new_emoji = '❎'
+    put_manager.delete_emoji()

@@ -21,5 +21,5 @@ class IEmojiRepo(ABC):
         pass
 
     @abstractmethod
-    def delete_emoji(self, emoji_id: int) -> Emoji:
+    def delete_emoji(self, emoji_id: int) -> None:
         pass
