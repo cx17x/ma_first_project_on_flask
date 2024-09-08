@@ -35,9 +35,10 @@ def update_by_id(id):
     return jsonify(asdict(result))
 
 @emoji_bp.route('/govno/<int:id>', methods=['DELETE'])
-def delete_emoji():
+def delete_emoji(id):
     usercase = DeleteEmojiUC(emoji_repo=EmojiRepoDB(new_session()))
-    dto = DeleteEmojiDTO()
+    # data = request.json
+    dto = DeleteEmojiDTO(emoji_id=id)
     result = usercase.execute(dto=dto)
     return jsonify(asdict(result))
 

@@ -71,4 +71,4 @@ if __name__ == '__main__':
     put_manager = Manager('http://127.0.0.1:5000')
 
     new_emoji = '❎'
-    put_manager.delete_emoji()
+    put_manager.delete_emoji(id=3)
